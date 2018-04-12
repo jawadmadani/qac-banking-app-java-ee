@@ -1,4 +1,4 @@
-package com.qa.service.repository;
+package com.qa.controller;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.domain.Customer;
+import com.qa.service.repository.CustomerRepository;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
