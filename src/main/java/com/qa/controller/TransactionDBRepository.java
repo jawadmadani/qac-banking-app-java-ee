@@ -27,8 +27,15 @@ public class TransactionDBRepository implements TransactionRepository{
 	private JSONUtil util;
 
 	@Override
-	public String getAllTransactions() {
-		Query query = manager.createQuery("Select a FROM Customer a");
+	public String getAllTransactions(long accountid) {
+		Query query = manager.createQuery("Select a FROM Transaction a where ACC_ID = " + accountid + ";");
+		Collection<Transaction> transactions = (Collection<Transaction>) query.getResultList();
+		return util.getJSONForObject(transactions);
+	}
+	
+	@Override
+	public String getAllTransactionStatement(long accountid) {
+		Query query = manager.createQuery("Select a FROM Transaction a where ACC_ID = " + accountid + ";");
 		Collection<Transaction> transactions = (Collection<Transaction>) query.getResultList();
 		return util.getJSONForObject(transactions);
 	}
@@ -75,5 +82,7 @@ public class TransactionDBRepository implements TransactionRepository{
 	public void setUtil(JSONUtil util) {
 		this.util = util;
 	}
+
+	
 
 }

@@ -2,7 +2,9 @@ package com.qa.service.business;
 
 public interface TransactionService {
 	
-	String getAllTransactions();
+	String getAllTransactions(long accountid);
+	
+	String getAllTransactionStatement(long accountid);
 	
 	String addTransaction(String transaction);
 	

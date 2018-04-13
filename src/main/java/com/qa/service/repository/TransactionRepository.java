@@ -2,7 +2,9 @@ package com.qa.service.repository;
 
 public interface TransactionRepository {
 	
-	String getAllTransactions();
+	String getAllTransactions(long accountid);
+	
+	String getAllTransactionStatement(long accountid);
 	
 	String createTransaction(String transaction);
 	
