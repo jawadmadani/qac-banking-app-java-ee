@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('loginController',function($scope,$http,$location,$timeout,$state){
         $scope.attempts = 0;
-        $scope.usermae = "";
+        $scope.username = "";
         $scope.password = "";
 
         $scope.goToRegister = function(){
@@ -40,9 +40,11 @@ angular.module('app')
         };
     })
     .controller('createCustomerController',function($scope,$http,$location,$state) {
-        $scope.usermae = "";
+        $scope.username = "";
         $scope.password = "";
         $scope.checkPwd = "";
+
+
 
         $scope.validateRegistration = function(){
             if($scope.username === ""){
@@ -54,7 +56,12 @@ angular.module('app')
                 return false;
             }
             else if ($scope.checkPwd === ""){
-                window.alert("")
+                window.alert("");
+                return false;
+            }
+            else {
+                $scope.createCustomer();
+                return true;
             }
         };
 
