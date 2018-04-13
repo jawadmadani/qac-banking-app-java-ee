@@ -10,7 +10,8 @@
             })
             .state('createCustomer',{
                 url:'/createCustomer',
-                templateUrl: 'views/createCustomer.html'
+                templateUrl: 'views/createCustomer.html',
+                controller: 'createCustomerController'
             })
             .state('accountList',{
                 url:'/customer/:id/accounts',

@@ -1,8 +1,12 @@
 angular.module('app')
-    .controller('loginController',function($scope,$http,$location,$timeout){
+    .controller('loginController',function($scope,$http,$location,$timeout,$state){
         $scope.attempts = 0;
         $scope.usermae = "";
         $scope.password = "";
+
+        $scope.goToRegister = function(){
+            $state.go('createCustomer');
+        };
 
         $scope.validateLogin = function(){
             if($scope.attempts === 3){
@@ -17,8 +21,8 @@ angular.module('app')
                 return false;
             }
             else if($scope.password === ""){
-              window.alert("Password can't be empty");
-              return false;
+                window.alert("Password can't be empty");
+                return false;
             }
         };
 
@@ -35,17 +39,42 @@ angular.module('app')
             })
         };
     })
-    .controller('createCustomer',function($scope,$http,$location) {
-            $scope.checkUniqueUsername = function () {
-                //placeholder - GET customers with filter, if username exists return false
-            };
+    .controller('createCustomerController',function($scope,$http,$location,$state) {
+        $scope.usermae = "";
+        $scope.password = "";
+        $scope.checkPwd = "";
 
-            $scope.createCustomer = function(){
-                //placeholder - POST
-            };
-        }
-    )
-    .controller('accountsController',function($scope,$http,$location,logout){
+        $scope.validateRegistration = function(){
+            if($scope.username === ""){
+                window.alert("Username can't be empty");
+                return false;
+            }
+            else if($scope.password === ""){
+                window.alert("Password can't be empty");
+                return false;
+            }
+            else if ($scope.checkPwd === ""){
+                window.alert("")
+            }
+        };
+
+        $scope.checkUniqueUsername = function () {
+            //placeholder - GET customers with filter, if username exists return false
+        };
+
+        $scope.createCustomer = function(){
+            $http.post($location.url).then(function(response){
+                if (response !== null){
+                    console.log('Function run');
+                    $state.go('login');
+                }
+                else {
+                    console.log('Response is not null, error in createCustomer()')
+                }
+            });
+        };
+    })
+    .controller('accountsController',function($scope,$http,$location,$state,logout){
         $scope.getAccounts = function(){
             //placeholder - GET - shipwreck example required another service to retrieve all, not sure that is necessary here
         };
@@ -68,7 +97,7 @@ angular.module('app')
             //placeholder - PUT - also requires new view for edit form
         }
     })
-    .controller('accountController',function($scope,$http,$location,logout){
+    .controller('accountController',function($scope,$http,$location,$state,logout){
        $scope.getTransactions = function(){
            //placeholder - GET
        };
