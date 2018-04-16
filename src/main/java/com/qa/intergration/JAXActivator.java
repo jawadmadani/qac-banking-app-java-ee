@@ -9,7 +9,7 @@ public class JAXActivator extends Application {
 
 /*
 
-	http://localhost:8080/finalaccount1/rest/account/json
+	http://localhost:8080/QACBank/rest/account/json
 	http protocol
 		   server name
 		   			:port name
