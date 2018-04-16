@@ -9,7 +9,7 @@
                 controller: 'loginController'
             })
             .state('createCustomer',{
-                url:'/createCustomer',
+                url:'/register',
                 templateUrl: 'views/createCustomer.html',
                 controller: 'createCustomerController'
             })

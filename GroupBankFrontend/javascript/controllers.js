@@ -44,29 +44,46 @@ angular.module('app')
         $scope.password = "";
         $scope.checkPwd = "";
 
-
+        $scope.log = function(){
+          console.log('Running sign in protocol');
+          console.log('For username: ' + $scope.username);
+        };
 
         $scope.validateRegistration = function(){
             if($scope.username === ""){
                 window.alert("Username can't be empty");
+                console.log("Invalid: Username was empty");
                 return false;
             }
             else if($scope.password === ""){
                 window.alert("Password can't be empty");
+                console.log("Invalid: Password was empty");
                 return false;
             }
             else if ($scope.checkPwd === ""){
-                window.alert("");
+                window.alert("Must enter the same password in both fields");
+                console.log("Invalid: Check password mismatch");
                 return false;
             }
+            else if ($scope.username !== ""){
+                checkUniqueUsername();
+            }
             else {
+                console.log("Valid: Starting customer creation");
                 $scope.createCustomer();
+                console.log("customer created");
                 return true;
             }
         };
 
         $scope.checkUniqueUsername = function () {
-            //placeholder - GET customers with filter, if username exists return false
+            $http.get($location.url).then(function(response){
+                if (response !== null){
+                    window.alert("Username is taken, try a different one");
+                    console.log("Username in use");
+                    return false;
+                }
+            });
         };
 
         $scope.createCustomer = function(){
