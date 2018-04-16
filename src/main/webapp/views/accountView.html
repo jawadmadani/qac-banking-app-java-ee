@@ -1,0 +1,21 @@
+
+<h2>Account Details</h2>
+<div>Account Number: </div>
+<div id="graphContainer"></div>
+<table>
+	<tr>
+		<td><h3>Recent Transactions</h3></td>
+	</tr>
+	<tr>
+		<td><h4>Date</h4></td>
+		<td><h4>Transaction Type</h4></td>
+		<td><h4>Amount</h4></td>
+	</tr>
+	<tr ng-repeat="transaction in transactions | limitTo:5 | orderBy: id:true">
+		<td>{{transaction.date_of_transaction}}</td>
+		<td>{{transaction.type}}</td>
+		<td>{{transaction.amount}}</td>
+	</tr>
+</table>
+<a ui-sref="statement">View Full Statement</a>
+<a ui-sref="transactionMap">View Transaction Map</a>

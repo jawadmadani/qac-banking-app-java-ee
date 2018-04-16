@@ -2,12 +2,12 @@ package com.qa.service.repository;
 
 public interface AccountRepository {
 
-	String getAllAccounts();
+	String getAllAccounts(Long CUS_ID);
 
-	String createAccount(String accout);
-
-	String updateAccount(Long id, String accountToUpdate);
-
-	String deleteAccount(Long id);
+	String createAccount(String ACCOUNT_NUMBER, Long CUS_ID);
+//
+//	String updateAccount(Long id, String accountToUpdate);
+//
+//	String deleteAccount(Long id);
 
 }

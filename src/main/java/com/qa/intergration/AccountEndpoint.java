@@ -11,39 +11,39 @@ import javax.ws.rs.Produces;
 
 import com.qa.service.business.AccountService;
 
-@Path("/account")
+@Path("/customer/{CUS_ID}/accounts")
 public class AccountEndpoint {
 
 	@Inject
 	private AccountService service; //this links to the class AccountService in the project hierarchy
 
-	@Path("/json")
+	@Path("/")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllAccounts() {
-		return service.getAllAccounts();
+	public String getAllAccounts(@PathParam("CUS_ID") Long CUS_ID) {
+		return service.getAllAccounts(CUS_ID);
 	}
 
-	@Path("/json")
+	@Path("/new")
 	@POST
 	@Produces({ "application/json" })
-	public String addAccount(String account) {
-		return service.addAccount(account);
+	public String createAccount(String ACCOUNT_NUMBER, @PathParam("CUS_ID") Long CUS_ID) {
+		return service.createAccount(ACCOUNT_NUMBER, CUS_ID);
 	}
-
-	@Path("/json/{id}")
-	@PUT
-	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long id, String account) {
-		return service.updateAccount(id, account);
-	}
-
-	@Path("/json/{id}")
-	@DELETE
-	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long id) {
-		return service.deleteAccount(id);
-	}
+//
+//	@Path("/json/{id}")
+//	@PUT
+//	@Produces({ "application/json" })
+//	public String updateAccount(@PathParam("id") Long id, String account) {
+//		return service.updateAccount(id, account);
+//	}
+//
+//	@Path("/json/{id}")
+//	@DELETE
+//	@Produces({ "application/json" })
+//	public String deleteAccount(@PathParam("id") Long id) {
+//		return service.deleteAccount(id);
+//	}
 
 	public void setService(AccountService service) {
 		this.service = service;

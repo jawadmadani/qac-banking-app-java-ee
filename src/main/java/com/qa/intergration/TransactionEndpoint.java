@@ -17,33 +17,41 @@ public class TransactionEndpoint {
 	@Inject
 	private TransactionService service;
 	
-	@Path("/json")
+	@Path("/customer/{CUS_ID}/account/{ACC_ID}")
 	@GET
 	@Produces({ "transaction/json" })
-	public String getTransaction(String transaction) {
-		return service.getAllTransactions();
+	public String getTransaction(@PathParam("ACC_ID") Long ACC_ID) {
+		return service.getAllTransactions(ACC_ID);
 	}
 	
-	@Path("/json")
-	@POST
+	@Path("/customer/{CUS_ID}/account/{ACC_ID}/statement")
+	@GET
 	@Produces({ "transaction/json" })
-	public String addTransaction(String transaction) {
-		return service.addTransaction(transaction);
+	public String getTransactionStatement(@PathParam("ACC_ID") Long ACC_ID) {
+		return service.getAllTransactions(ACC_ID);
 	}
 	
-	@Path("/json/{id}")
-	@PUT
-	@Produces({ "transaction/json" })
-	public String updateTransaction(@PathParam("id") Long id, String transaction) {
-		return service.updateTransaction(id, transaction);
-	}
 	
-	@Path("/json/{id}")
-	@DELETE
-	@Produces({ "transaction/json" })
-	public String deleteTransaction(@PathParam("id") Long id) {
-		return service.deleteTransaction(id);
-	}
+//	@Path("/json")
+//	@POST
+//	@Produces({ "transaction/json" })
+//	public String addTransaction(String transaction) {
+//		return service.addTransaction(transaction);
+//	}
+	
+//	@Path("/json/{id}")
+//	@PUT
+//	@Produces({ "transaction/json" })
+//	public String updateTransaction(@PathParam("id") Long id, String transaction) {
+//		return service.updateTransaction(id, transaction);
+//	}
+
+//	@Path("/json/{id}")
+//	@DELETE
+//	@Produces({ "transaction/json" })
+//	public String deleteTransaction(@PathParam("id") Long id) {
+//		return service.deleteTransaction(id);
+//	}
 	
 	public void setService(TransactionService service) {
 		this.service = service;

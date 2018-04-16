@@ -27,42 +27,44 @@ public class AccountDBRepository implements AccountRepository { //AccountReposit
 	private JSONUtil util;
 
 	@Override
-	public String getAllAccounts() {
-		Query query = manager.createQuery("Select a FROM Account a"); //create new query
+	public String getAllAccounts(Long CUS_ID) {
+		Query query = manager.createQuery("Select a FROM Account a where CUS_ID = 'CUS_ID'"); //create new query
 		Collection<Account> accounts = (Collection<Account>) query.getResultList(); //execute query object
 		return util.getJSONForObject(accounts); //transfer and change it into json object
 	}
 
 	@Override
 	@Transactional(REQUIRED)
-	public String createAccount(String accout) { //takes in json obect, the thing that's coming in
-		Account anAccount = util.getObjectForJSON(accout, Account.class); //change string object into account class
-		manager.persist(anAccount); //add account class using persist database
-		return "{\"message\": \"account has been sucessfully added\"}"; 
+	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
+		Query query = manager.createQuery("insert into Account (ACCOUNT_NUMBER, CUS_ID) values (" + ACCOUNT_NUMBER + "," +  CUS_ID + ")");
+//		Account anAccount = util.getObjectForJSON(accout, Account.class); 
+//		manager.persist(anAccount); //add account class using persist database
+//		return "{\"message\": \"account has been sucessfully added\"}"; 
+		return "";
 	}
-
-	@Override
-	@Transactional(REQUIRED)
-	public String updateAccount(Long id, String accountToUpdate) { //update, take in number of object we want to update (the id), the actual json object that we wanna update with
-		Account updatedAccount = util.getObjectForJSON(accountToUpdate, Account.class); //get json string and put it into object
-		Account accountFromDB = findAccount(id); //find object in database based on id, so we get the object that we actually wanna update
-		if (accountToUpdate != null) { //if not null, update account
-			accountFromDB = updatedAccount;
-			manager.merge(accountFromDB);
-		}
-		return "{\"message\": \"account sucessfully updated\"}";
-	}
-
-	@Override
-	@Transactional(REQUIRED) 
-	public String deleteAccount(Long id) { //takes the id of object that we wanna delete
-		Account accountInDB = findAccount(id); 
-		if (accountInDB != null) {
-			manager.remove(accountInDB);
-			return "{\"message\": \"account sucessfully deleted\"}";
-		}
-		return "{\"message\": \"account not found\"}";
-	}
+//
+//	@Override
+//	@Transactional(REQUIRED)
+//	public String updateAccount(Long id, String accountToUpdate) { //update, take in number of object we want to update (the id), the actual json object that we wanna update with
+//		Account updatedAccount = util.getObjectForJSON(accountToUpdate, Account.class); //get json string and put it into object
+//		Account accountFromDB = findAccount(id); //find object in database based on id, so we get the object that we actually wanna update
+//		if (accountToUpdate != null) { //if not null, update account
+//			accountFromDB = updatedAccount;
+//			manager.merge(accountFromDB);
+//		}
+//		return "{\"message\": \"account sucessfully updated\"}";
+//	}
+//
+//	@Override
+//	@Transactional(REQUIRED) 
+//	public String deleteAccount(Long id) { //takes the id of object that we wanna delete
+//		Account accountInDB = findAccount(id); 
+//		if (accountInDB != null) {
+//			manager.remove(accountInDB);
+//			return "{\"message\": \"account sucessfully deleted\"}";
+//		}
+//		return "{\"message\": \"account not found\"}";
+//	}
 
 	private Account findAccount(Long id) {
 		return manager.find(Account.class, id);
