@@ -1,0 +1,17 @@
+<h2>Accounts</h2>
+<a ng-click="addAccount()">Add Account</a>
+<table>
+	<tr>
+		<td><h3>All Accounts</h3></td>
+	</tr>
+	<tr>
+		<td><h4>Account Number</h4></td>
+	</tr>
+	<tr ng-repeat="account in accounts">
+		<td>{{account.accountNumber}}</td>
+		<td>
+			<a ui-sref="accountView({id:account.id})">View</a>
+			<a ng-click="removeAccount(account)">Delete</a>
+		</td>
+	</tr>
+</table>

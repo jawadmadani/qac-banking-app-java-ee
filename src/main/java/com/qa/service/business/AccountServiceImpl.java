@@ -14,26 +14,26 @@ public class AccountServiceImpl implements AccountService { //all the business l
 	private AccountRepository repo; //no alternative turned on, so use the default repository, goes for the default implementation
 	
 	@Override
-	public String getAllAccounts() {
+	public String getAllAccounts(Long CUS_ID) {
 		LOGGER.info("In AccountServiceImpl getAllAccounts ");
-		return repo.getAllAccounts();
+		return repo.getAllAccounts(CUS_ID);
 	}
 
 	@Override
-	public String addAccount(String account) {
-		return repo.createAccount(account);
+	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) {
+		return repo.createAccount(ACCOUNT_NUMBER, CUS_ID);
 	}
 
-	@Override
-	public String updateAccount(Long id, String account) {
-		return repo.updateAccount(id, account);
-	}
-
-	@Override
-	public String deleteAccount(Long id) {
-		return repo.deleteAccount(id);
-
-	}
+//	@Override
+//	public String updateAccount(Long id, String account) {
+//		return repo.updateAccount(id, account);
+//	}
+//
+//	@Override
+//	public String deleteAccount(Long id) {
+//		return repo.deleteAccount(id);
+//
+//	}
 
 	public void setRepo(AccountRepository repo) {
 		this.repo = repo;

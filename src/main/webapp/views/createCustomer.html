@@ -1,0 +1,14 @@
+<div id="titleContainer">
+    <h1 id="Title">Welcome to Mrs.Jenkins</h1><br>
+    <p id="subTitle">A god tier banking application</p>
+</div>
+
+<div id="formContainer">
+    <h3>Registration</h3>
+    <form name="loginForm" id="loginForm" role="form" ng-submit="validateRegistration()">
+        <input ng-model="username" id="username" placeholder="Enter Username Here"><br>
+        <input ng-model="password" type="password" id="password" placeholder="Enter Password Here"><br>
+        <input ng-model="checkPwd" type="password" id="confirmPassword" placeholder="Re-enter Password Here"><br>
+        <input type="submit" value="Register" ng-click="log()">
+    </form>
+</div>

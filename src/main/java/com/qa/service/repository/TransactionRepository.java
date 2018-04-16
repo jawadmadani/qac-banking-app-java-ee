@@ -2,12 +2,14 @@ package com.qa.service.repository;
 
 public interface TransactionRepository {
 	
-	String getAllTransactions();
+	String getAllTransactions(long ACC_ID);
 	
-	String createTransaction(String transaction);
+	String getAllTransactionStatement(long ACC_ID);
 	
-	String updateTransaction(Long id, String transactionToUpdate);
-	
-	String deleteTransaction(Long id);
+//	String createTransaction(String transaction);
+//	
+//	String updateTransaction(Long id, String transactionToUpdate);
+//	
+//	String deleteTransaction(Long id);
 	
 }
