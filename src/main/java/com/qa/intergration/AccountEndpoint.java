@@ -24,12 +24,12 @@ public class AccountEndpoint {
 		return service.getAllAccounts(CUS_ID);
 	}
 
-//	@Path("/json")
-//	@POST
-//	@Produces({ "application/json" })
-//	public String addAccount(String account) {
-//		return service.addAccount(account);
-//	}
+	@Path("/new")
+	@POST
+	@Produces({ "/json" })
+	public String createAccount(String ACCOUNT_NUMBER, @PathParam("CUS_ID") Long CUS_ID) {
+		return service.createAccount(ACCOUNT_NUMBER, CUS_ID);
+	}
 //
 //	@Path("/json/{id}")
 //	@PUT

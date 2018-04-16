@@ -4,7 +4,7 @@ public interface AccountService {
 
 	String getAllAccounts(Long CUS_ID);
 
-//	String addAccount(String account);
+	String createAccount(String ACCOUNT_NUMBER, Long CUS_ID);
 //
 //	String updateAccount(Long id, String account);
 //

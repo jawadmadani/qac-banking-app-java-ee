@@ -33,13 +33,14 @@ public class AccountDBRepository implements AccountRepository { //AccountReposit
 		return util.getJSONForObject(accounts); //transfer and change it into json object
 	}
 
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String createAccount(String accout) { //takes in json obect, the thing that's coming in
-//		Account anAccount = util.getObjectForJSON(accout, Account.class); //change string object into account class
+	@Override
+	@Transactional(REQUIRED)
+	public void createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
+		Query query = manager.createQuery("insert into Account (ACCOUNT_NUMBER, CUS_ID) values (" + ACCOUNT_NUMBER + "," +  CUS_ID + ")");
+//		Account anAccount = util.getObjectForJSON(accout, Account.class); 
 //		manager.persist(anAccount); //add account class using persist database
 //		return "{\"message\": \"account has been sucessfully added\"}"; 
-//	}
+	}
 //
 //	@Override
 //	@Transactional(REQUIRED)

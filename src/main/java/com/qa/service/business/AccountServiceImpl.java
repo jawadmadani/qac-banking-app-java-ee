@@ -19,11 +19,11 @@ public class AccountServiceImpl implements AccountService { //all the business l
 		return repo.getAllAccounts(CUS_ID);
 	}
 
-//	@Override
-//	public String addAccount(String account) {
-//		return repo.createAccount(account);
-//	}
-//
+	@Override
+	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) {
+		return repo.createAccount(ACCOUNT_NUMBER, CUS_ID);
+	}
+
 //	@Override
 //	public String updateAccount(Long id, String account) {
 //		return repo.updateAccount(id, account);
