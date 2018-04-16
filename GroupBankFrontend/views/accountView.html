@@ -10,7 +10,7 @@
 		<td><h4>Transaction Type</h4></td>
 		<td><h4>Amount</h4></td>
 	</tr>
-	<tr ng-repeat="transaction in transactions | limitTo:10">
+	<tr ng-repeat="transaction in transactions | limitTo:5 | orderBy: id:true">
 		<td>{{transaction.date_of_transaction}}</td>
 		<td>{{transaction.type}}</td>
 		<td>{{transaction.amount}}</td>
