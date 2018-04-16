@@ -14,32 +14,32 @@ public class TransactionServiceImpl implements TransactionService{
 	private TransactionRepository repo;
 
 	@Override
-	public String getAllTransactions(long accountid) {
-		LOGGER.info("testing..." + repo.getAllTransactions(accountid));
-		return repo.getAllTransactions(accountid);
+	public String getAllTransactions(long ACC_ID) {
+		LOGGER.info("testing..." + repo.getAllTransactions(ACC_ID));
+		return repo.getAllTransactions(ACC_ID);
 	}
 
-	@Override
-	public String addTransaction(String transaction) {
-		return repo.createTransaction(transaction);
-	}
+//	@Override
+//	public String addTransaction(String transaction) {
+//		return repo.createTransaction(transaction);
+//	}
+//
+//	@Override
+//	public String updateTransaction(Long id, String transaction) {
+//		return repo.updateTransaction(id, transaction);
+//	}
+//
+//	@Override
+//	public String deleteTransaction(Long id) {
+//		return repo.deleteTransaction(id);
+//	}
+//	
+//	public void setRepo(TransactionRepository repo) {
+//		this.repo = repo;
+//	}
 
 	@Override
-	public String updateTransaction(Long id, String transaction) {
-		return repo.updateTransaction(id, transaction);
-	}
-
-	@Override
-	public String deleteTransaction(Long id) {
-		return repo.deleteTransaction(id);
-	}
-	
-	public void setRepo(TransactionRepository repo) {
-		this.repo = repo;
-	}
-
-	@Override
-	public String getAllTransactionStatement(long accountid) {
+	public String getAllTransactionStatement(long ACC_ID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

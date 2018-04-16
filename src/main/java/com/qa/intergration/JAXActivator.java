@@ -3,7 +3,7 @@ package com.qa.intergration;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("rest") //this is the starting access point of this application (http://localhost:8080/finalaccount1/rest/account/json)
+@ApplicationPath("rest") //this is the starting access point of this application (http://localhost:8080/QACBank/rest/account/json)
 public class JAXActivator extends Application {
 }
 

@@ -35,9 +35,10 @@ public class CustomerDBRepository implements CustomerRepository{
 
 	@Override
 	@Transactional(REQUIRED)
-	public void createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
+	public String createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
 		Query query = manager.createQuery("insert into Customer (FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD) values (" + FIRST_NAME + ", " + SECOND_NAME + ", " + USERNAME + ", " + PASSWORD + ") ");
 //		manager.persist(query);
+		return "";
 	}
 
 //	@Override

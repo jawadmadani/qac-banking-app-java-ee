@@ -4,7 +4,7 @@ public interface CustomerRepository {
 	
 	String getCustomer(String USERNAME, String PASSWORD);
 	
-	void createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD);
+	String createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD);
 //	
 //	String updateCustomer(Long id, String customerToUpdate);
 //	

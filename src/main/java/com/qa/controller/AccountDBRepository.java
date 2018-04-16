@@ -35,11 +35,12 @@ public class AccountDBRepository implements AccountRepository { //AccountReposit
 
 	@Override
 	@Transactional(REQUIRED)
-	public void createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
+	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
 		Query query = manager.createQuery("insert into Account (ACCOUNT_NUMBER, CUS_ID) values (" + ACCOUNT_NUMBER + "," +  CUS_ID + ")");
 //		Account anAccount = util.getObjectForJSON(accout, Account.class); 
 //		manager.persist(anAccount); //add account class using persist database
 //		return "{\"message\": \"account has been sucessfully added\"}"; 
+		return "";
 	}
 //
 //	@Override

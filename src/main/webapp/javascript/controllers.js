@@ -66,7 +66,9 @@ angular.module('app')
                 return false;
             }
             else if ($scope.username !== ""){
-                checkUniqueUsername();
+                if(!($scope.checkUniqueUsername())){
+                	return false;
+                }
             }
             else {
                 console.log("Valid: Starting customer creation");
@@ -82,6 +84,9 @@ angular.module('app')
                     window.alert("Username is taken, try a different one");
                     console.log("Username in use");
                     return false;
+                }
+                else{
+                	return true;
                 }
             });
         };

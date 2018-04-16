@@ -19,14 +19,14 @@ public class AccountEndpoint {
 
 	@Path("/")
 	@GET
-	@Produces({ "/json" })
+	@Produces({ "application/json" })
 	public String getAllAccounts(@PathParam("CUS_ID") Long CUS_ID) {
 		return service.getAllAccounts(CUS_ID);
 	}
 
 	@Path("/new")
 	@POST
-	@Produces({ "/json" })
+	@Produces({ "application/json" })
 	public String createAccount(String ACCOUNT_NUMBER, @PathParam("CUS_ID") Long CUS_ID) {
 		return service.createAccount(ACCOUNT_NUMBER, CUS_ID);
 	}

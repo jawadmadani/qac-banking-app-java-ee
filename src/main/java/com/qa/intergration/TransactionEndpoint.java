@@ -20,15 +20,15 @@ public class TransactionEndpoint {
 	@Path("/customer/{CUS_ID}/account/{ACC_ID}")
 	@GET
 	@Produces({ "transaction/json" })
-	public String getTransaction(@PathParam("ACC_ID") Long accountid) {
-		return service.getAllTransactions(accountid);
+	public String getTransaction(@PathParam("ACC_ID") Long ACC_ID) {
+		return service.getAllTransactions(ACC_ID);
 	}
 	
 	@Path("/customer/{CUS_ID}/account/{ACC_ID}/statement")
 	@GET
 	@Produces({ "transaction/json" })
-	public String getTransactionStatement(@PathParam("ACC_ID") Long accountid) {
-		return service.getAllTransactions(accountid);
+	public String getTransactionStatement(@PathParam("ACC_ID") Long ACC_ID) {
+		return service.getAllTransactions(ACC_ID);
 	}
 	
 	
