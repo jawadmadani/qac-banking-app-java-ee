@@ -1,3 +1,5 @@
+let urlPrefix = "http://localhost:8080/QACBank/rest"
+
 angular.module('app')
     .controller('loginController',function($scope,$http,$location,$timeout,$state){
         $scope.attempts = 0;
@@ -27,7 +29,7 @@ angular.module('app')
         };
 
         $scope.signIn = function(){
-            $http.get($location.url()).then(function(response){
+            $http.get(urlPrefix + $location.url()).then(function(response){
                 $scope.customer = response.data;
                 console.log($scope.customer);
                 if($scope.customer === ""){
@@ -85,7 +87,7 @@ angular.module('app')
         };
 
         $scope.checkUniqueUsername = function () {
-            $http.get($location.absUrl()).then(function(response){
+            $http.get(urlPrefix + $location.url()).then(function(response){
                 let resData = response.data;
                 console.log(resData);
                 if (resData === null){
@@ -100,7 +102,7 @@ angular.module('app')
         };
 
         $scope.createCustomer = function(){
-            $http.post($location.absUrl()).then(function(response){
+            $http.post(urlPrefix + $location.url()).then(function(response){
                 let resData = response.data;
                 console.log(resData);
                 if (resData !== null){

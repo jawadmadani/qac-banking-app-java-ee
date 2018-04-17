@@ -17,20 +17,20 @@ import com.qa.service.repository.AccountRepository;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
-@Default //you can only have one default on one class, having it on AccountMapRepository would return error
-public class AccountDBRepository implements AccountRepository { //AccountRepository is an interface
+@Default
+public class AccountDBRepository implements AccountRepository {
 
-	@PersistenceContext(unitName = "primary") //linked to persistence.xml
+	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 
-	@Inject //beans container, handle life cycle of this object
+	@Inject
 	private JSONUtil util;
 
 	@Override
 	public String getAllAccounts(Long CUS_ID) {
-		Query query = manager.createQuery("Select a FROM Account a where CUS_ID = 'CUS_ID'"); //create new query
-		Collection<Account> accounts = (Collection<Account>) query.getResultList(); //execute query object
-		return util.getJSONForObject(accounts); //transfer and change it into json object
+		Query query = manager.createQuery("Select a FROM Account a where CUS_ID = 'CUS_ID'");
+		Collection<Account> accounts = (Collection<Account>) query.getResultList();
+		return util.getJSONForObject(accounts);
 	}
 
 	@Override

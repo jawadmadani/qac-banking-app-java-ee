@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import com.qa.service.business.AccountService;
 import com.qa.service.business.CustomerService;
 
-@Path("customer")
+@Path("")
 public class CustomerEndpoint {
 	
 	@Inject
@@ -19,7 +19,7 @@ public class CustomerEndpoint {
 	
 	private static final Logger LOGGER = Logger.getLogger(CustomerEndpoint.class);
 	
-	@Path("test")
+	@Path("/home")
 	@GET
 	@Produces({ "application/json" })
 	public String getCustomer(String USERNAME, String PASSWORD) {
@@ -28,7 +28,7 @@ public class CustomerEndpoint {
 		return service.getCustomer(USERNAME, PASSWORD);
 	}
 	
-	@Path("register")
+	@Path("/register")
 	@POST
 	@Produces({ "application/json" })
 	public String addCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {

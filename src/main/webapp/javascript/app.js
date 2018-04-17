@@ -4,7 +4,7 @@
     app.config(function($stateProvider){
         $stateProvider
             .state('login', {
-                url: "/",
+                url: "/home",
                 templateUrl: 'views/home.html',
                 controller: 'loginController'
             })
