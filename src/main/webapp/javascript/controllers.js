@@ -29,6 +29,7 @@ angular.module('app')
         $scope.signIn = function(){
             $http.get($location.url()).then(function(response){
                 $scope.customer = response.data;
+                console.log($scope.customer);
                 if($scope.customer === ""){
                     $scope.attempts+=1;
                     $state.go('login');
@@ -66,8 +67,13 @@ angular.module('app')
                 return false;
             }
             else if ($scope.username !== ""){
-                if(!($scope.checkUniqueUsername())){
-                	return false;
+                $scope.checkUniqueUsername();
+                if($scope.checkUniqueUsername()){
+                    console.log("Valid username");
+                }
+                else{
+                    console.log("Username not unique");
+                    return false;
                 }
             }
             else {
@@ -79,8 +85,10 @@ angular.module('app')
         };
 
         $scope.checkUniqueUsername = function () {
-            $http.get($location.url).then(function(response){
-                if (response !== null){
+            $http.get($location.absUrl()).then(function(response){
+                let resData = response.data;
+                console.log(resData);
+                if (resData === null){
                     window.alert("Username is taken, try a different one");
                     console.log("Username in use");
                     return false;
@@ -92,8 +100,10 @@ angular.module('app')
         };
 
         $scope.createCustomer = function(){
-            $http.post($location.url).then(function(response){
-                if (response !== null){
+            $http.post($location.absUrl()).then(function(response){
+                let resData = response.data;
+                console.log(resData);
+                if (resData !== null){
                     console.log('Function run');
                     $state.go('login');
                 }

@@ -12,7 +12,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
+
 import com.qa.domain.Customer;
+import com.qa.service.business.AccountService;
 import com.qa.service.repository.CustomerRepository;
 import com.qa.util.JSONUtil;
 
@@ -26,10 +29,15 @@ public class CustomerDBRepository implements CustomerRepository{
 	@Inject
 	private JSONUtil util;
 	
+	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+	
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
 		Query query = manager.createQuery("Select a FROM Customer a where USERNAME = 'USERNAME' and PASSWORD = 'PASSWORD'");
 		Collection<Customer> customers = (Collection<Customer>) query.getResultList();
+		LOGGER.info("At Customer DB repo - Get request - getCustomer");
+		LOGGER.info(USERNAME + " " + PASSWORD);
+		LOGGER.info(customers);
 		return util.getJSONForObject(customers);
 	}
 

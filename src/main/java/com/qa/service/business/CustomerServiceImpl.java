@@ -2,15 +2,21 @@ package com.qa.service.business;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
+
 import com.qa.service.repository.CustomerRepository;
 
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Inject
 	private CustomerRepository repo;
+	
+	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
 
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
+		LOGGER.info("At Customer ServiceImpl - Get request - getCustomer");
+		LOGGER.info(USERNAME + " " + PASSWORD);
 		return repo.getCustomer(USERNAME, PASSWORD);
 	}
 

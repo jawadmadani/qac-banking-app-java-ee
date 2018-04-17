@@ -1,26 +1,30 @@
 package com.qa.intergration;
 
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.apache.log4j.Logger;
+
+import com.qa.service.business.AccountService;
 import com.qa.service.business.CustomerService;
 
-@Path("/customer")
+@Path("/#!/customer")
 public class CustomerEndpoint {
 	
 	@Inject
 	private CustomerService service;
 	
+	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+	
 	@Path("/")
 	@GET
 	@Produces({ "customer/json" })
 	public String getCustomer(String USERNAME, String PASSWORD) {
+		LOGGER.info("At Customer End Point - Get request - getCustomer");
+		LOGGER.info(USERNAME + " " + PASSWORD);
 		return service.getCustomer(USERNAME, PASSWORD);
 	}
 	
