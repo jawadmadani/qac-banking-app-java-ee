@@ -29,7 +29,7 @@ public class CustomerDBRepository implements CustomerRepository{
 	@Inject
 	private JSONUtil util;
 	
-	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+	private static final Logger LOGGER = Logger.getLogger(CustomerDBRepository.class);
 	
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
@@ -38,7 +38,8 @@ public class CustomerDBRepository implements CustomerRepository{
 		LOGGER.info("At Customer DB repo - Get request - getCustomer");
 		LOGGER.info(USERNAME + " " + PASSWORD);
 		LOGGER.info(customers);
-		return util.getJSONForObject(customers);
+		return "{\"object\":\"hello\"}";
+		//return util.getJSONForObject(customers);
 	}
 
 	@Override

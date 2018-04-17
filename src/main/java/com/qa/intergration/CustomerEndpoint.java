@@ -11,26 +11,26 @@ import org.apache.log4j.Logger;
 import com.qa.service.business.AccountService;
 import com.qa.service.business.CustomerService;
 
-@Path("/#!/customer")
+@Path("customer")
 public class CustomerEndpoint {
 	
 	@Inject
 	private CustomerService service;
 	
-	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+	private static final Logger LOGGER = Logger.getLogger(CustomerEndpoint.class);
 	
-	@Path("/")
+	@Path("test")
 	@GET
-	@Produces({ "customer/json" })
+	@Produces({ "application/json" })
 	public String getCustomer(String USERNAME, String PASSWORD) {
 		LOGGER.info("At Customer End Point - Get request - getCustomer");
 		LOGGER.info(USERNAME + " " + PASSWORD);
 		return service.getCustomer(USERNAME, PASSWORD);
 	}
 	
-	@Path("/register")
+	@Path("register")
 	@POST
-	@Produces({ "customer/json" })
+	@Produces({ "application/json" })
 	public String addCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
 		return service.addCustomer(FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD);
 	}

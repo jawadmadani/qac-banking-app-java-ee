@@ -11,7 +11,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Inject
 	private CustomerRepository repo;
 	
-	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+	private static final Logger LOGGER = Logger.getLogger(CustomerServiceImpl.class);
 
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
