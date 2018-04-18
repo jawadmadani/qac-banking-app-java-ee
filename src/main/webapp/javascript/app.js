@@ -15,7 +15,8 @@
             })
             .state('accountList',{
                 url:'/customer/:id/accounts',
-                templateUrl: 'views/accountList.html'
+                templateUrl: 'views/accountList.html',
+                controller: 'accountsController'
             })
             .state('accountView',{
                 url:'/customer/:id/account/:accountId',

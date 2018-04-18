@@ -117,11 +117,13 @@ angular.module('app')
         };
     })
     .controller('accountsController',function($scope,$http,$location,$state,logout){
-        $scope.getAccounts = function(){
-            //placeholder - GET - shipwreck example required another service to retrieve all, not sure that is necessary here
-        };
-
-        $scope.accounts = getAccounts();
+        $scope.accountList=[];
+      (function(){
+            $http.get(urlPrefix + $location.url()).then(function(response){
+                $scope.accountList = response.data;
+                console.log($scope.accountList);
+            });
+        }());
 
         $scope.signOut = function(){
             logout();
@@ -135,8 +137,8 @@ angular.module('app')
             //placeholder - POST - also requires new view for add form
         };
 
-        $scope.editAccount = function(){
-            //placeholder - PUT - also requires new view for edit form
+        $scope.viewAccount = function(){
+            //placeholder - PUT - accountView({id:account.id})
         }
     })
     .controller('accountController',function($scope,$http,$location,$state,logout){
