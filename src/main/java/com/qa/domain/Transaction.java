@@ -27,6 +27,8 @@ public class Transaction {
 	@ManyToOne
 	@JoinColumn(name = "ACC_ID", nullable = false)
 	private Account account;
+
+	public Transaction() {}
 	
 	public Transaction(Long transactionID, Account account, String type, double amount, Date dateOfTransaction) {
 		this.transactionID = transactionID;

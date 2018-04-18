@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
 		LOGGER.info("At Customer ServiceImpl - Get request - getCustomer");
-		LOGGER.info(USERNAME + " " + PASSWORD);
+		LOGGER.info(USERNAME + "----" + PASSWORD);
 		return repo.getCustomer(USERNAME, PASSWORD);
 	}
 

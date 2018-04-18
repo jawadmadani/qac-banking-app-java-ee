@@ -1,4 +1,4 @@
-let urlPrefix = "http://localhost:8080/QACBank/rest"
+let urlPrefix = "http://localhost:8080/QACBank/rest";
 
 angular.module('app')
     .controller('loginController',function($scope,$http,$location,$timeout,$state){
@@ -29,15 +29,16 @@ angular.module('app')
         };
 
         $scope.signIn = function(){
-            $http.get(urlPrefix + $location.url()).then(function(response){
+            $http.put(urlPrefix + $location.url(), {userName: $scope.username, password: $scope.password}).then(function(response){
                 $scope.customer = response.data;
-                console.log($scope.customer);
-                if($scope.customer === ""){
+                if($scope.customer.result === 'fail'){
+                    console.log($scope.customer);
                     $scope.attempts+=1;
                     $state.go('login');
                 }
-                else{
-                    $location.path('/customer/' + $scope.customer.id + '/accounts');
+                else if($scope.customer.result !== 'fail'){
+                    console.log($scope.customer);
+                    $location.path('/customer/' + $scope.customer.result + '/accounts');
                 }
             })
         };

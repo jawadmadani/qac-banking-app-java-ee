@@ -33,13 +33,23 @@ public class CustomerDBRepository implements CustomerRepository{
 	
 	@Override
 	public String getCustomer(String USERNAME, String PASSWORD) {
-		Query query = manager.createQuery("Select a FROM Customer a where USERNAME = 'USERNAME' and PASSWORD = 'PASSWORD'");
+		Query query = manager.createQuery("Select a FROM Customer a where USERNAME = '"+ USERNAME +"' and PASSWORD = '"+ PASSWORD +"'");
 		Collection<Customer> customers = (Collection<Customer>) query.getResultList();
 		LOGGER.info("At Customer DB repo - Get request - getCustomer");
-		LOGGER.info(USERNAME + " " + PASSWORD);
+		LOGGER.info(USERNAME + "----" + PASSWORD);
 		LOGGER.info(customers);
+		if (customers.size() > 1 || customers.size() == 0) {
+			return "{\"result\":\"fail\"}";
+		}
+		else if (customers.size() == 1) {
+			Customer customer = customers.iterator().next();
+			Long id = customer.getId();
+			LOGGER.info(id);
+			return "{\"result\":\"" + id.toString() + "\"}";
+		}
+
 		return "{\"object\":\"hello\"}";
-		//return util.getJSONForObject(customers);
+//		return util.getJSONForObject(customers);
 	}
 
 	@Override
