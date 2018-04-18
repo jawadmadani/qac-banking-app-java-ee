@@ -9,14 +9,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qa.service.business.AccountService;
+import org.apache.log4j.Logger;
 
-@Path("/#!/customer/{CUS_ID}/accounts")
+import com.qa.domain.Account;
+import com.qa.domain.Customer;
+import com.qa.service.business.AccountService;
+import com.qa.util.JSONUtil;
+
+@Path("/customer/{CUS_ID}/accounts")
 public class AccountEndpoint {
 
 	@Inject
 	private AccountService service; //this links to the class AccountService in the project hierarchy
 
+	@Inject
+	private JSONUtil util;
+	
+	private static final Logger LOGGER = Logger.getLogger(CustomerEndpoint.class);
+	
 	@Path("/")
 	@GET
 	@Produces({ "application/json" })
@@ -27,9 +37,15 @@ public class AccountEndpoint {
 	@Path("/new")
 	@POST
 	@Produces({ "application/json" })
-	public String createAccount(String ACCOUNT_NUMBER, @PathParam("CUS_ID") Long CUS_ID) {
-		return service.createAccount(ACCOUNT_NUMBER, CUS_ID);
+	public String createAccount(@PathParam("CUS_ID") Long CUS_ID, String JSON) {
+		LOGGER.info(JSON);
+		Account newAccount = util.getObjectForJSON(JSON, Account.class);
+		LOGGER.info("At Account End Point - Post request - add account");
+		LOGGER.info("---" + newAccount.getAccountNumber() + "---");
+		return service.createAccount(newAccount.getAccountNumber(), CUS_ID);
 	}
+	
+
 //
 //	@Path("/json/{id}")
 //	@PUT

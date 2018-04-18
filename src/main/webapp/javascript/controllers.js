@@ -47,6 +47,8 @@ angular.module('app')
         $scope.username = "";
         $scope.password = "";
         $scope.checkPwd = "";
+        $scope.firstname = "";
+        $scope.surname = "";
 
         $scope.log = function(){
           console.log('Running sign in protocol');
@@ -70,48 +72,46 @@ angular.module('app')
                 return false;
             }
             else if ($scope.username !== ""){
-                $scope.checkUniqueUsername();
                 if($scope.checkUniqueUsername()){
-                    console.log("Valid username");
                 }
                 else{
-                    console.log("Username not unique");
                     return false;
                 }
-            }
-            else {
-                console.log("Valid: Starting customer creation");
-                $scope.createCustomer();
-                console.log("customer created");
-                return true;
             }
         };
 
         $scope.checkUniqueUsername = function () {
-            $http.get(urlPrefix + $location.url()).then(function(response){
-                let resData = response.data;
-                console.log(resData);
-                if (resData === null){
+            $http.put(urlPrefix + $location.url(),{userName: $scope.username}).then(function(response){
+                $scope.resData = response.data;
+                console.log($scope.resData.result);
+                if ($scope.resData.result === 'fail'){
                     window.alert("Username is taken, try a different one");
                     console.log("Username in use");
                     return false;
                 }
-                else{
+                else if ($scope.resData.result === 'unique'){
+                    console.log("valid username");
+                    console.log("Valid: Starting customer creation");
+                    $scope.createCustomer();
                 	return true;
                 }
             });
         };
 
         $scope.createCustomer = function(){
-            $http.post(urlPrefix + $location.url()).then(function(response){
-                let resData = response.data;
-                console.log(resData);
-                if (resData !== null){
-                    console.log('Function run');
+            $http.post(urlPrefix + $location.url(),{
+                firstName: $scope.firstname,
+                secondName: $scope.surname,
+                userName: $scope.username,
+                password: $scope.password}).then(function(response){
+                $scope.responseData = response.data;
+                console.log($scope.responseData.result);
+                if ($scope.responseData.result !== 'run'){
+                    console.log('failed to create');
                     $state.go('login');
                 }
-                else {
-                    console.log('Response is not null, error in createCustomer()')
+                else if ($scope.responseData.result === 'run') {
+                    console.log('created customer')
                 }
             });
         };
