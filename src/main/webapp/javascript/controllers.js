@@ -131,9 +131,9 @@ angular.module('app')
             });
         }());
 
-      $scope.addAccount = function(){
-          $location.path(location.url() + '/new');
-      };
+      	$scope.addAccount = function(){
+          	$location.path(location.url() + '/new');
+      	};
 
         $scope.removeAccount = function(account){
             $http.delete(urlPrefix + $location.url() + "/" + account.ACC_ID).then(function(response){
@@ -141,14 +141,15 @@ angular.module('app')
             	console.log($scope.deleteResult);
             });
             $scope.accountList.splice($scope.accountList.indexOf(account),1);
+        };
 
-      $scope.signOut = function(){
-          logout();
-      };
+      	$scope.signOut = function(){
+          	logout();
+      	};
 
-      $scope.viewAccount = function(){
-          //placeholder - PUT - accountView({id:account.id})
-      }
+      	$scope.viewAccount = function(){
+          	//placeholder - PUT - accountView({id:account.id})
+      	};
     })
     .controller('createAccountController',function($scope,$http,$location,$state,logout){
         $scope.accountNumber = "";
