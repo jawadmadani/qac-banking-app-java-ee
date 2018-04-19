@@ -25,7 +25,8 @@
             })
             .state('accountView',{
                 url:'/customer/:id/account/:accountId',
-                templateUrl: 'views/accountView.html'
+                templateUrl: 'views/accountView.html',
+                controller: 'transactionController'
             })
             .state('statement',{
                 url:'/customer/:id/account/:accountId/statement',

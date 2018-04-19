@@ -149,8 +149,10 @@ angular.module('app')
           	logout();
       	};
 
-      	$scope.viewAccount = function(){
-          	$state.go('')
+      	$scope.viewAccount = function(account){
+          	let path = $location.url();
+      		let split = path.split("/");
+          	$location.path('/customer/' + split[2] + '/account/' + account.ACC_ID);
       	};
     })
     .controller('createAccountController',function($scope,$http,$location,$state,logout){
