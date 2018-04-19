@@ -69,7 +69,21 @@ public class AccountDBRepository implements AccountRepository {
 		manager.persist(newAccount);
 		return "{\"result\":\"run\"}";
 	}
-
+  
+	@Override
+	@Transactional(REQUIRED)
+	public String deleteAccount(Long id) {
+		LOGGER.info("At Account Db Repository - DELETE request - deleteAccount");
+		LOGGER.info("Account id: " + id);
+		Account accountInDB = findAccount(id);
+		LOGGER.info("account: " + accountInDB);
+		if (accountInDB != null) {
+			manager.remove(accountInDB);
+			return "{\"message\": \"account successfully deleted\"}";
+		}
+		return "{\"message\": \"account not found\"}";
+	}
+  
 	private Account findAccount(Long id) {
 		return manager.find(Account.class, id);
 	}

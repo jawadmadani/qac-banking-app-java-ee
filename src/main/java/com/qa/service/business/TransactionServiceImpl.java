@@ -18,5 +18,4 @@ public class TransactionServiceImpl implements TransactionService{
 		LOGGER.info("Transaction ServiceImpl - Get request - getAllTransactionStatement");
 		return repo.getAllTransactionStatement(ACC_ID);
 	}
-	
 }

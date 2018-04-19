@@ -59,7 +59,7 @@ public class TransactionDBRepository implements TransactionRepository{
 		return stringJsonReturn;
 			
 	}
-	
+
 	private Transaction findTransaction(Long id) {
 		return manager.find(Transaction.class, id);
 	}

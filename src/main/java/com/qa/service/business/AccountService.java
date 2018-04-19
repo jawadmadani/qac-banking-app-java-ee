@@ -6,4 +6,6 @@ public interface AccountService {
 
 	String createAccount(String ACCOUNT_NUMBER, Long CUS_ID);
 
+	String deleteAccount(Long id);
+
 }

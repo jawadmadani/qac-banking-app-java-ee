@@ -9,6 +9,7 @@ import com.qa.service.repository.AccountRepository;
 public class AccountServiceImpl implements AccountService {
 
 	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
+
 	@Inject
 	private AccountRepository repo;
 	
@@ -24,6 +25,13 @@ public class AccountServiceImpl implements AccountService {
 		LOGGER.info("At  Account serviceImpl - post request - add account");
 		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);
 		return repo.createAccount(ACCOUNT_NUMBER, CUS_ID);
+	}
+  
+	@Override
+	public String deleteAccount(Long id) {
+		LOGGER.info("At Account serviceImpl - delete request - deleteAccount");
+		LOGGER.info("account id: " + id);
+		return repo.deleteAccount(id);
 	}
 
 	public void setRepo(AccountRepository repo) {

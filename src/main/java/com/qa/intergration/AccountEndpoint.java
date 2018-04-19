@@ -46,6 +46,15 @@ public class AccountEndpoint {
 		return service.createAccount(newAccount.getAccountNumber(), CUS_ID);
 	}
 
+	@Path("/{ACC_ID}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteAccount(@PathParam("ACC_ID") Long ACC_ID) {
+		LOGGER.info("At AccountEndPoint - Delete request - deleteAccount");
+		LOGGER.info("account id: " + ACC_ID);
+		return service.deleteAccount(ACC_ID);
+	}
+
 	public void setService(AccountService service) {
 		this.service = service;
 	}
