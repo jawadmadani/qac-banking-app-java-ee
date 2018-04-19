@@ -132,7 +132,9 @@ angular.module('app')
         }());
 
       	$scope.addAccount = function(){
-          	$location.path($location.url() + '/new');
+      		let path = $location.url();
+      		let split = path.split("/");
+          	$location.path('/customer/' + split[2] + '/accounts/new');
       	};
 
         $scope.removeAccount = function(account){
@@ -148,7 +150,7 @@ angular.module('app')
       	};
 
       	$scope.viewAccount = function(){
-          	//placeholder - PUT - accountView({id:account.id})
+          	$state.go('')
       	};
     })
     .controller('createAccountController',function($scope,$http,$location,$state,logout){
@@ -178,6 +180,9 @@ angular.module('app')
                 }
                 else if ($scope.responseData.result === 'run'){
                     console.log("account created");
+                    let path = $location.url();
+      				let split = path.split("/");
+          			$location.path('/customer/' + split[2] + '/accounts');
                 }
             })
         };
