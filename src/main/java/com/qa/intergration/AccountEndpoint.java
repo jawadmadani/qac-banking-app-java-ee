@@ -19,7 +19,7 @@ import com.qa.util.JSONUtil;
 public class AccountEndpoint {
 
 	@Inject
-	private AccountService service; //this links to the class AccountService in the project hierarchy
+	private AccountService service;
   
 	private static final Logger LOGGER = Logger.getLogger(AccountEndpoint.class);
 
@@ -45,22 +45,6 @@ public class AccountEndpoint {
 		LOGGER.info("---" + newAccount.getAccountNumber() + "---");
 		return service.createAccount(newAccount.getAccountNumber(), CUS_ID);
 	}
-	
-
-//
-//	@Path("/json/{id}")
-//	@PUT
-//	@Produces({ "application/json" })
-//	public String updateAccount(@PathParam("id") Long id, String account) {
-//		return service.updateAccount(id, account);
-//	}
-//
-//	@Path("/json/{id}")
-//	@DELETE
-//	@Produces({ "application/json" })
-//	public String deleteAccount(@PathParam("id") Long id) {
-//		return service.deleteAccount(id);
-//	}
 
 	public void setService(AccountService service) {
 		this.service = service;
