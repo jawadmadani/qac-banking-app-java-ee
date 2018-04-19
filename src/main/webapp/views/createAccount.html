@@ -1,0 +1,12 @@
+<div id="titleContainer">
+    <h1 id="Title">Welcome to Mrs.Jenkins</h1><br>
+    <p id="subTitle">A god tier banking application</p>
+</div>
+
+<div id="formContainer">
+    <h3>Registration</h3>
+    <form name="loginForm" id="loginForm" role="form" ng-submit="validateAccountNumber()">
+        <input ng-model="accountNumber" id="accountNumber" placeholder="Enter account number here"><br>
+        <input type="submit" value="Register" ng-click="logSubmit()">
+    </form>
+</div>

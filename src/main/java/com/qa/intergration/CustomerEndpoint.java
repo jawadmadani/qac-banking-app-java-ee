@@ -52,21 +52,7 @@ public class CustomerEndpoint {
 		LOGGER.info(newCustomer.getUserName() + "----" + newCustomer.getPassword() + "----" + newCustomer.getFirstName() + "----" + newCustomer.getSecondName());
 		return service.addCustomer(newCustomer.getFirstName(), newCustomer.getSecondName(), newCustomer.getUserName(), newCustomer.getPassword());
 	}
-	
-//	@Path("/json/{id}")
-//	@PUT
-//	@Produces({ "customer/json" })
-//	public String updateCustomer(@PathParam("id") Long id, String customer) {
-//		return service.updateCustomer(id, customer);
-//	}
-//	
-//	@Path("/json/{id}")
-//	@DELETE
-//	@Produces({ "customer/json" })
-//	public String deleteCustomer(@PathParam("id") Long id) {
-//		return service.deleteCustomer(id);
-//	}
-	
+
 	public void setService(CustomerService service) {
 		this.service = service;
 	}

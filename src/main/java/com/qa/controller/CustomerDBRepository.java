@@ -73,10 +73,8 @@ public class CustomerDBRepository implements CustomerRepository{
 	@Override
 	@Transactional(REQUIRED)
 	public String createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
-		//Query query = manager.createQuery("insert into Customer (FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD) values ('" + FIRST_NAME + "', '" + SECOND_NAME + "', '" + USERNAME + "', '" + PASSWORD + "')");
 		LOGGER.info("At customer DB repo - post request - createCustomer");
 		LOGGER.info(FIRST_NAME + "---" + SECOND_NAME + "---" + USERNAME + "---" + PASSWORD);
-		
 		Customer newCustomer = new Customer();
 		newCustomer.setFirstName(FIRST_NAME);
 		newCustomer.setSecondName(SECOND_NAME);
@@ -86,29 +84,6 @@ public class CustomerDBRepository implements CustomerRepository{
 		
 		return "{\"result\":\"run\"}";
 	}
-
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String updateCustomer(Long id, String customerToUpdate) {
-//		Customer updatedCustomer = util.getObjectForJSON(customerToUpdate, Customer.class);
-//		Customer customerFromDB = findCustomer(id);
-//		if (customerToUpdate != null) {
-//			customerFromDB = updatedCustomer;
-//			manager.merge(customerFromDB);
-//		}
-//		return "{\"Message\": \"Customer successfully updated\"}";
-//	}
-//
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String deleteCustomer(Long id) {
-//		Customer customerInDB = findCustomer(id);
-//		if (customerInDB != null) {
-//			manager.remove(customerInDB);
-//			return "{\"Message\": \"Customer successfully removed\"}";
-//		}
-//		return "{\"Message\": \"Customer cannot be found\"}";
-//	}
 	
 	private Customer findCustomer(Long id) {
 		return manager.find(Customer.class, id);
