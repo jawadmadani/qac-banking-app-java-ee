@@ -66,36 +66,25 @@ public class AccountDBRepository implements AccountRepository {
 		newAccount.setAccountNumber(ACCOUNT_NUMBER);
 		Customer cusID = new Customer();
 		cusID.setId(CUS_ID);
-		newAccount.setCustomer(cusID); //This is a wonky work around, may break cascading --- TEST AT SOME POINT
+		newAccount.setCustomer(cusID);
 		manager.persist(newAccount);
 		
 		return "{\"result\":\"run\"}";
 	}
-	
 
-//
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String updateAccount(Long id, String accountToUpdate) { //update, take in number of object we want to update (the id), the actual json object that we wanna update with
-//		Account updatedAccount = util.getObjectForJSON(accountToUpdate, Account.class); //get json string and put it into object
-//		Account accountFromDB = findAccount(id); //find object in database based on id, so we get the object that we actually wanna update
-//		if (accountToUpdate != null) { //if not null, update account
-//			accountFromDB = updatedAccount;
-//			manager.merge(accountFromDB);
-//		}
-//		return "{\"message\": \"account sucessfully updated\"}";
-//	}
-//
-//	@Override
-//	@Transactional(REQUIRED) 
-//	public String deleteAccount(Long id) { //takes the id of object that we wanna delete
-//		Account accountInDB = findAccount(id); 
-//		if (accountInDB != null) {
-//			manager.remove(accountInDB);
-//			return "{\"message\": \"account sucessfully deleted\"}";
-//		}
-//		return "{\"message\": \"account not found\"}";
-//	}
+	@Override
+	@Transactional(REQUIRED)
+	public String deleteAccount(Long id) {
+		LOGGER.info("At Account Db Repository - DELETE request - deleteAccount");
+		LOGGER.info("Account id: " + id);
+		Account accountInDB = findAccount(id);
+		LOGGER.info("account: " + accountInDB);
+		if (accountInDB != null) {
+			manager.remove(accountInDB);
+			return "{\"message\": \"account successfully deleted\"}";
+		}
+		return "{\"message\": \"account not found\"}";
+	}
 
 	private Account findAccount(Long id) {
 		return manager.find(Account.class, id);

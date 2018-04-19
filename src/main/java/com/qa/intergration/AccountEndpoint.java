@@ -45,22 +45,15 @@ public class AccountEndpoint {
 		LOGGER.info("---" + newAccount.getAccountNumber() + "---");
 		return service.createAccount(newAccount.getAccountNumber(), CUS_ID);
 	}
-	
 
-//
-//	@Path("/json/{id}")
-//	@PUT
-//	@Produces({ "application/json" })
-//	public String updateAccount(@PathParam("id") Long id, String account) {
-//		return service.updateAccount(id, account);
-//	}
-//
-//	@Path("/json/{id}")
-//	@DELETE
-//	@Produces({ "application/json" })
-//	public String deleteAccount(@PathParam("id") Long id) {
-//		return service.deleteAccount(id);
-//	}
+	@Path("/{ACC_ID}")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteAccount(@PathParam("ACC_ID") Long ACC_ID) {
+		LOGGER.info("At AccountEndPoint - Delete request - deleteAccount");
+		LOGGER.info("account id: " + ACC_ID);
+		return service.deleteAccount(ACC_ID);
+	}
 
 	public void setService(AccountService service) {
 		this.service = service;

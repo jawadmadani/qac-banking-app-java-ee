@@ -118,7 +118,7 @@ angular.module('app')
     })
     .controller('accountsController',function($scope,$http,$location,$state,logout){
         $scope.accountList=[];
-      (function(){
+      	(function(){
             $http.get(urlPrefix + $location.url()).then(function(response){
                 $scope.accountList = response.data;
                 console.log($scope.accountList);
@@ -129,8 +129,12 @@ angular.module('app')
             logout();
         };
 
-        $scope.removeAccount = function(){
-            //placeholder - DELETE
+        $scope.removeAccount = function(account){
+            $http.delete(urlPrefix + $location.url() + "/" + account.ACC_ID).then(function(response){
+            	$scope.deleteResult=response.data;
+            	console.log($scope.deleteResult);
+            });
+            $scope.accountList.splice($scope.accountList.indexOf(account),1);
         };
 
         $scope.addAccount = function(){

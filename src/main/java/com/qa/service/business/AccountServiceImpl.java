@@ -26,17 +26,13 @@ public class AccountServiceImpl implements AccountService { //all the business l
 		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);
 		return repo.createAccount(ACCOUNT_NUMBER, CUS_ID);
 	}
-	
-//	@Override
-//	public String updateAccount(Long id, String account) {
-//		return repo.updateAccount(id, account);
-//	}
-//
-//	@Override
-//	public String deleteAccount(Long id) {
-//		return repo.deleteAccount(id);
-//
-//	}
+
+	@Override
+	public String deleteAccount(Long id) {
+		LOGGER.info("At Account serviceImpl - delete request - deleteAccount");
+		LOGGER.info("account id: " + id);
+		return repo.deleteAccount(id);
+	}
 
 	public void setRepo(AccountRepository repo) {
 		this.repo = repo;
