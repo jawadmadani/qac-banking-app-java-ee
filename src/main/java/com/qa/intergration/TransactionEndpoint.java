@@ -16,7 +16,7 @@ import com.qa.domain.Customer;
 import com.qa.domain.Transaction;
 import com.qa.service.business.TransactionService;
 
-@Path("/transaction")
+@Path("/customer/{CUS_ID}/account/{ACC_ID}")
 public class TransactionEndpoint {
 	
 	@Inject
@@ -27,45 +27,21 @@ public class TransactionEndpoint {
 	
 	private static final Logger LOGGER = Logger.getLogger(TransactionEndpoint.class);
 	
-	@Path("/customer/{CUS_ID}/account/{ACC_ID}")
+	@Path("/")
 	@GET
 	@Produces({ "transaction/json" })
 	public String getTransaction(@PathParam("ACC_ID") Long ACC_ID) {
 		LOGGER.info("At Transaction End Point - Get request - getTransaction");
-		//Transaction statementGet = util.getObjectForJSON(ACC_ID, Transaction.class);
 		return service.getAllTransactionStatement(ACC_ID);
 	}
 	
-	@Path("/customer/{CUS_ID}/account/{ACC_ID}/statement")
+	@Path("/statement")
 	@GET
 	@Produces({ "transaction/json" })
 	public String getTransactionStatement(@PathParam("ACC_ID") Long ACC_ID) {
 		LOGGER.info("At Transaction End Point - Get request - getTransactionStatement");
-		//Transaction statementGet = util.getObjectForJSON(ACC_ID, Transaction.class);
 		return service.getAllTransactionStatement(ACC_ID);
 	}
-	
-	
-//	@Path("/json")
-//	@POST
-//	@Produces({ "transaction/json" })
-//	public String addTransaction(String transaction) {
-//		return service.addTransaction(transaction);
-//	}
-	
-//	@Path("/json/{id}")
-//	@PUT
-//	@Produces({ "transaction/json" })
-//	public String updateTransaction(@PathParam("id") Long id, String transaction) {
-//		return service.updateTransaction(id, transaction);
-//	}
-
-//	@Path("/json/{id}")
-//	@DELETE
-//	@Produces({ "transaction/json" })
-//	public String deleteTransaction(@PathParam("id") Long id) {
-//		return service.deleteTransaction(id);
-//	}
 	
 	public void setService(TransactionService service) {
 		this.service = service;
