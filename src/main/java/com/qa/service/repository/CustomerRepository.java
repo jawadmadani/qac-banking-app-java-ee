@@ -10,4 +10,6 @@ public interface CustomerRepository {
 //	
 //	String deleteCustomer(Long id);
 //	
+
+	String checkUniqueUsername(String USERNAME);
 }

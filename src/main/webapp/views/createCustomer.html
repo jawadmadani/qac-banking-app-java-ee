@@ -6,6 +6,8 @@
 <div id="formContainer">
     <h3>Registration</h3>
     <form name="loginForm" id="loginForm" role="form" ng-submit="validateRegistration()">
+        <input ng-model="firstname" id="firstname" placeholder="Enter firstname here"><br>
+        <input ng-model="surname" id="surname" placeholder="Enter surname here"><br>
         <input ng-model="username" id="username" placeholder="Enter Username Here"><br>
         <input ng-model="password" type="password" id="password" placeholder="Enter Password Here"><br>
         <input ng-model="checkPwd" type="password" id="confirmPassword" placeholder="Re-enter Password Here"><br>

@@ -4,18 +4,19 @@
     app.config(function($stateProvider){
         $stateProvider
             .state('login', {
-                url: "/",
+                url: "/home",
                 templateUrl: 'views/home.html',
                 controller: 'loginController'
             })
             .state('createCustomer',{
-                url:'/register',
+                url:"/register",
                 templateUrl: 'views/createCustomer.html',
                 controller: 'createCustomerController'
             })
             .state('accountList',{
                 url:'/customer/:id/accounts',
-                templateUrl: 'views/accountList.html'
+                templateUrl: 'views/accountList.html',
+                controller: 'accountsController'
             })
             .state('accountView',{
                 url:'/customer/:id/account/:accountId',

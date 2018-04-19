@@ -1,3 +1,5 @@
+let urlPrefix = "http://localhost:8080/QACBank/rest";
+
 angular.module('app')
     .controller('loginController',function($scope,$http,$location,$timeout,$state){
         $scope.attempts = 0;
@@ -27,14 +29,16 @@ angular.module('app')
         };
 
         $scope.signIn = function(){
-            $http.get($location.url()).then(function(response){
+            $http.put(urlPrefix + $location.url(), {userName: $scope.username, password: $scope.password}).then(function(response){
                 $scope.customer = response.data;
-                if($scope.customer === ""){
+                if($scope.customer.result === 'fail'){
+                    console.log($scope.customer);
                     $scope.attempts+=1;
                     $state.go('login');
                 }
-                else{
-                    $location.path('/customer/' + $scope.customer.id + '/accounts');
+                else if($scope.customer.result !== 'fail'){
+                    console.log($scope.customer);
+                    $location.path('/customer/' + $scope.customer.result + '/accounts');
                 }
             })
         };
@@ -43,6 +47,8 @@ angular.module('app')
         $scope.username = "";
         $scope.password = "";
         $scope.checkPwd = "";
+        $scope.firstname = "";
+        $scope.surname = "";
 
         $scope.log = function(){
           console.log('Running sign in protocol');
@@ -66,49 +72,58 @@ angular.module('app')
                 return false;
             }
             else if ($scope.username !== ""){
-                if(!($scope.checkUniqueUsername())){
-                	return false;
+                if($scope.checkUniqueUsername()){
                 }
-            }
-            else {
-                console.log("Valid: Starting customer creation");
-                $scope.createCustomer();
-                console.log("customer created");
-                return true;
+                else{
+                    return false;
+                }
             }
         };
 
         $scope.checkUniqueUsername = function () {
-            $http.get($location.url).then(function(response){
-                if (response !== null){
+            $http.put(urlPrefix + $location.url(),{userName: $scope.username}).then(function(response){
+                $scope.resData = response.data;
+                console.log($scope.resData.result);
+                if ($scope.resData.result === 'fail'){
                     window.alert("Username is taken, try a different one");
                     console.log("Username in use");
                     return false;
                 }
-                else{
+                else if ($scope.resData.result === 'unique'){
+                    console.log("valid username");
+                    console.log("Valid: Starting customer creation");
+                    $scope.createCustomer();
                 	return true;
                 }
             });
         };
 
         $scope.createCustomer = function(){
-            $http.post($location.url).then(function(response){
-                if (response !== null){
-                    console.log('Function run');
+            $http.post(urlPrefix + $location.url(),{
+                firstName: $scope.firstname,
+                secondName: $scope.surname,
+                userName: $scope.username,
+                password: $scope.password}).then(function(response){
+                $scope.responseData = response.data;
+                console.log($scope.responseData.result);
+                if ($scope.responseData.result !== 'run'){
+                    console.log('failed to create');
                     $state.go('login');
                 }
-                else {
-                    console.log('Response is not null, error in createCustomer()')
+                else if ($scope.responseData.result === 'run') {
+                    console.log('created customer')
                 }
             });
         };
     })
     .controller('accountsController',function($scope,$http,$location,$state,logout){
-        $scope.getAccounts = function(){
-            //placeholder - GET - shipwreck example required another service to retrieve all, not sure that is necessary here
-        };
-
-        $scope.accounts = getAccounts();
+        $scope.accountList=[];
+      (function(){
+            $http.get(urlPrefix + $location.url()).then(function(response){
+                $scope.accountList = response.data;
+                console.log($scope.accountList);
+            });
+        }());
 
         $scope.signOut = function(){
             logout();
@@ -122,8 +137,8 @@ angular.module('app')
             //placeholder - POST - also requires new view for add form
         };
 
-        $scope.editAccount = function(){
-            //placeholder - PUT - also requires new view for edit form
+        $scope.viewAccount = function(){
+            //placeholder - PUT - accountView({id:account.id})
         }
     })
     .controller('accountController',function($scope,$http,$location,$state,logout){

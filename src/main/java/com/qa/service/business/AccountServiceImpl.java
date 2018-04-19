@@ -15,15 +15,18 @@ public class AccountServiceImpl implements AccountService { //all the business l
 	
 	@Override
 	public String getAllAccounts(Long CUS_ID) {
-		LOGGER.info("In AccountServiceImpl getAllAccounts ");
+		LOGGER.info("At AccountServiceImpl - GET REquest - getAllAccounts ");
+		LOGGER.info("Customer id: " + CUS_ID);
 		return repo.getAllAccounts(CUS_ID);
 	}
 
 	@Override
 	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) {
+		LOGGER.info("At  Account serviceImpl - post request - add account");
+		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);
 		return repo.createAccount(ACCOUNT_NUMBER, CUS_ID);
 	}
-
+	
 //	@Override
 //	public String updateAccount(Long id, String account) {
 //		return repo.updateAccount(id, account);
