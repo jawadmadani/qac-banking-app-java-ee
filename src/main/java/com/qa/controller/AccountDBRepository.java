@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 
 import com.qa.domain.Account;
+import com.qa.domain.Customer;
 import com.qa.service.repository.AccountRepository;
 import com.qa.util.JSONUtil;
 
@@ -30,7 +31,7 @@ public class AccountDBRepository implements AccountRepository {
 	private JSONUtil util;
 
 	private static final Logger LOGGER = Logger.getLogger(AccountDBRepository.class);
-	
+
 	@Override
 	public String getAllAccounts(Long CUS_ID) {
 		Query query = manager.createQuery("Select a FROM Account a where CUS_ID = '"+ CUS_ID +"'");
@@ -58,12 +59,20 @@ public class AccountDBRepository implements AccountRepository {
 	@Override
 	@Transactional(REQUIRED)
 	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
-		Query query = manager.createQuery("insert into Account (ACCOUNT_NUMBER, CUS_ID) values (" + ACCOUNT_NUMBER + "," +  CUS_ID + ")");
-//		Account anAccount = util.getObjectForJSON(accout, Account.class); 
-//		manager.persist(anAccount); //add account class using persist database
-//		return "{\"message\": \"account has been sucessfully added\"}"; 
-		return "";
+		LOGGER.info("At Account DB repo - post request - createAccount");
+		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);
+		
+		Account newAccount = new Account();
+		newAccount.setAccountNumber(ACCOUNT_NUMBER);
+		Customer cusID = new Customer();
+		cusID.setId(CUS_ID);
+		newAccount.setCustomer(cusID); //This is a wonky work around, may break cascading --- TEST AT SOME POINT
+		manager.persist(newAccount);
+		
+		return "{\"result\":\"run\"}";
 	}
+	
+
 //
 //	@Override
 //	@Transactional(REQUIRED)

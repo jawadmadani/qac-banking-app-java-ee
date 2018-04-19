@@ -19,9 +19,18 @@ public class CustomerServiceImpl implements CustomerService{
 		LOGGER.info(USERNAME + "----" + PASSWORD);
 		return repo.getCustomer(USERNAME, PASSWORD);
 	}
+	
+	@Override
+	public String checkUniqueUsername(String USERNAME) {
+		LOGGER.info("At customer serviceImpl - put request - checkUniqueUsername");
+		LOGGER.info(USERNAME);
+		return repo.checkUniqueUsername(USERNAME);
+	}
 
 	@Override
 	public String addCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
+		LOGGER.info("At customer seviviceImpl - post request - addCustomer");
+		LOGGER.info(FIRST_NAME + "---" + SECOND_NAME + "---" + USERNAME + "---" + PASSWORD);
 		return repo.createCustomer(FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD);
 	}
 //
