@@ -21,7 +21,7 @@
             .state('createAccount',{
                 url:'/customer/:id/accounts/new',
                 templateUrl: 'views/createAccount.html',
-                controller: 'accountsController'
+                controller: 'createAccountController'
             })
             .state('accountView',{
                 url:'/customer/:id/account/:accountId',
