@@ -117,31 +117,66 @@ angular.module('app')
         };
     })
     .controller('accountsController',function($scope,$http,$location,$state,logout){
-        $scope.accountList=[];
+        $scope.accountNumber = "";
+        $scope.accountList = [];
+
+        $scope.logSubmit = function(){
+            console.log('Running account creation protocol');
+            console.log('For account number: ' + $scope.accountNumber);
+        };
+
+        $scope.validateAccountNumber = function(){
+            if ($scope.accountNumber === ""){
+                window.alert("Account number cannot be empty");
+                console.log("Account number was empty - invalid request");
+                return false;
+            }
+            else {
+                console.log("Valid account number entered - start creating account");
+                $scope.createAccount();
+                console.log("Creating account");
+                return true;
+            }
+        };
+
+        $scope.createAccount = function(){
+            $http.post(urlPrefix + $location.url(),{accountNumber:$scope.accountNumber}.then (function(response){
+                $scope.responseData = response.data;
+                console.log($scope.responseData.result);
+                if ($scope.responseData.result !== 'run'){
+                    console.log("Failed to create account");
+                    $state.go('createAccount');
+                }
+                else if ($scope.responseData.result === 'run'){
+                    console.log("account created");
+                }
+            }))
+        };
+
       (function(){
             $http.get(urlPrefix + $location.url()).then(function(response){
                 $scope.accountList = response.data;
                 console.log($scope.accountList);
             });
-        }());
+        }())
+        /*
+               $scope.signOut = function(){
+                   logout();
+               };
 
-        $scope.signOut = function(){
-            logout();
-        };
+               $scope.removeAccount = function(){
+                   //placeholder - DELETE
+               };
 
-        $scope.removeAccount = function(){
-            //placeholder - DELETE
-        };
+               $scope.addAccount = function(){
+                   //placeholder - POST - also requires new view for add form
+               };
 
-        $scope.addAccount = function(){
-            //placeholder - POST - also requires new view for add form
-        };
-
-        $scope.viewAccount = function(){
-            //placeholder - PUT - accountView({id:account.id})
-        }
-    })
-    .controller('accountController',function($scope,$http,$location,$state,logout){
+               $scope.viewAccount = function(){
+                   //placeholder - PUT - accountView({id:account.id})
+               }
+           })*/
+    .controller('transactionController',function($scope,$http,$location,$state,logout){
        $scope.getTransactions = function(){
            //placeholder - GET
        };
