@@ -10,7 +10,7 @@
 	<tr ng-repeat="account in accountList">
 		<td>{{account.accountNumber}}</td>
 		<td>
-			<input type="button" ng-click="viewAccount({{account.ACC_ID}})" value="View Account">
+			<input type="button" ng-click="viewAccount(account)" value="View Account">
 			<input type="button" ng-click="removeAccount(account)" value="Delete">
 		</td>
 	</tr>
