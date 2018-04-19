@@ -19,7 +19,7 @@ import com.qa.util.JSONUtil;
 public class AccountEndpoint {
 
 	@Inject
-	private AccountService service; //this links to the class AccountService in the project hierarchy
+	private AccountService service;
   
 	private static final Logger LOGGER = Logger.getLogger(AccountEndpoint.class);
 

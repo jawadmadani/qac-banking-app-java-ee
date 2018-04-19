@@ -86,29 +86,6 @@ public class CustomerDBRepository implements CustomerRepository{
 		
 		return "{\"result\":\"run\"}";
 	}
-
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String updateCustomer(Long id, String customerToUpdate) {
-//		Customer updatedCustomer = util.getObjectForJSON(customerToUpdate, Customer.class);
-//		Customer customerFromDB = findCustomer(id);
-//		if (customerToUpdate != null) {
-//			customerFromDB = updatedCustomer;
-//			manager.merge(customerFromDB);
-//		}
-//		return "{\"Message\": \"Customer successfully updated\"}";
-//	}
-//
-//	@Override
-//	@Transactional(REQUIRED)
-//	public String deleteCustomer(Long id) {
-//		Customer customerInDB = findCustomer(id);
-//		if (customerInDB != null) {
-//			manager.remove(customerInDB);
-//			return "{\"Message\": \"Customer successfully removed\"}";
-//		}
-//		return "{\"Message\": \"Customer cannot be found\"}";
-//	}
 	
 	private Customer findCustomer(Long id) {
 		return manager.find(Customer.class, id);

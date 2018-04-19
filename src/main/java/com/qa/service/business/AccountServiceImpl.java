@@ -6,12 +6,12 @@ import org.apache.log4j.Logger;
 
 import com.qa.service.repository.AccountRepository;
 
-public class AccountServiceImpl implements AccountService { //all the business logic goes here, such as banning users from accessing it etc
+public class AccountServiceImpl implements AccountService {
 
-	private static final Logger LOGGER = Logger.getLogger(AccountService.class); //exactly like sysout, but everything goes into log file instead of pring out on sysout
+	private static final Logger LOGGER = Logger.getLogger(AccountService.class);
 
-	@Inject //either uses db or hashmap (the example) polymorphically based on the @Default or @Alternative on the DB repository layers
-	private AccountRepository repo; //no alternative turned on, so use the default repository, goes for the default implementation
+	@Inject
+	private AccountRepository repo;
 	
 	@Override
 	public String getAllAccounts(Long CUS_ID) {

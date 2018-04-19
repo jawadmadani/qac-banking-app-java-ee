@@ -33,19 +33,5 @@ public class CustomerServiceImpl implements CustomerService{
 		LOGGER.info(FIRST_NAME + "---" + SECOND_NAME + "---" + USERNAME + "---" + PASSWORD);
 		return repo.createCustomer(FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD);
 	}
-//
-//	@Override
-//	public String updateCustomer(Long id, String customer) {
-//		return repo.updateCustomer(id, customer);
-//	}
-//
-//	@Override
-//	public String deleteCustomer(Long id) {
-//		return repo.deleteCustomer(id);
-//	}
-//	
-//	public void setRepo(CustomerRepository repo) {
-//		this.repo = repo;
-//	}
 
 }

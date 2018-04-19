@@ -25,25 +25,4 @@ public class TransactionServiceImpl implements TransactionService{
 		return repo.getAllTransactionStatement(ACC_ID);
 	}
 
-//	@Override
-//	public String addTransaction(String transaction) {
-//		return repo.createTransaction(transaction);
-//	}
-//
-//	@Override
-//	public String updateTransaction(Long id, String transaction) {
-//		return repo.updateTransaction(id, transaction);
-//	}
-//
-//	@Override
-//	public String deleteTransaction(Long id) {
-//		return repo.deleteTransaction(id);
-//	}
-//	
-//	public void setRepo(TransactionRepository repo) {
-//		this.repo = repo;
-//	}
-
-	
-
 }
