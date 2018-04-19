@@ -16,7 +16,7 @@ public class TransactionServiceImpl implements TransactionService{
 	@Override
 	public String getAllTransactions(long ACC_ID) {
 		LOGGER.info("testing..." + repo.getAllTransactions(ACC_ID));
-		return repo.getAllTransactions(ACC_ID);
+		return repo.getAllTransactionStatement(ACC_ID);
 	}
 	
 	@Override

@@ -34,9 +34,10 @@ public class TransactionDBRepository implements TransactionRepository{
 
 	@Override
 	public String getAllTransactions(long ACC_ID) {
-		Query query = manager.createQuery("Select a FROM Transaction a where ACC_ID = " + ACC_ID + ";");
-		Collection<Transaction> transactions = (Collection<Transaction>) query.getResultList();
-		return util.getJSONForObject(transactions);
+//		Query query = manager.createQuery("Select a FROM Transaction a where ACC_ID = " + ACC_ID + ";");
+//		Collection<Transaction> transactions = (Collection<Transaction>) query.getResultList();
+//		return util.getJSONForObject(transactions);
+		return "";
 	}
 	
 	@Override
@@ -57,7 +58,7 @@ public class TransactionDBRepository implements TransactionRepository{
 						"\", \"AMOUNT\": \"" + transaction.getAmount() + "\"}, ";
 			}
 		}else {
-			return "{\"message\": \"Transaction was unsuccessful\"}";
+			return "{\"message\": \"Transaction statement was unsuccessful\"}";
 		}
 		
 		LOGGER.info("Iterator transaction JSON: " + stringJson);

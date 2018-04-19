@@ -31,7 +31,9 @@ public class TransactionEndpoint {
 	@GET
 	@Produces({ "transaction/json" })
 	public String getTransaction(@PathParam("ACC_ID") Long ACC_ID) {
-		return service.getAllTransactions(ACC_ID);
+		LOGGER.info("At Transaction End Point - Get request - getTransaction");
+		//Transaction statementGet = util.getObjectForJSON(ACC_ID, Transaction.class);
+		return service.getAllTransactionStatement(ACC_ID);
 	}
 	
 	@Path("/customer/{CUS_ID}/account/{ACC_ID}/statement")
