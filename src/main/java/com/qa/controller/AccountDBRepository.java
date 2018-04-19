@@ -60,18 +60,16 @@ public class AccountDBRepository implements AccountRepository {
 	@Transactional(REQUIRED)
 	public String createAccount(String ACCOUNT_NUMBER, Long CUS_ID) { 
 		LOGGER.info("At Account DB repo - post request - createAccount");
-		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);
-		
+		LOGGER.info(ACCOUNT_NUMBER + "---" + CUS_ID);	
 		Account newAccount = new Account();
 		newAccount.setAccountNumber(ACCOUNT_NUMBER);
 		Customer cusID = new Customer();
 		cusID.setId(CUS_ID);
 		newAccount.setCustomer(cusID);
 		manager.persist(newAccount);
-		
 		return "{\"result\":\"run\"}";
 	}
-
+  
 	@Override
 	@Transactional(REQUIRED)
 	public String deleteAccount(Long id) {
@@ -85,7 +83,7 @@ public class AccountDBRepository implements AccountRepository {
 		}
 		return "{\"message\": \"account not found\"}";
 	}
-
+  
 	private Account findAccount(Long id) {
 		return manager.find(Account.class, id);
 	}

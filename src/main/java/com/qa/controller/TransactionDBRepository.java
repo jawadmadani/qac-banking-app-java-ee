@@ -1,10 +1,7 @@
 package com.qa.controller;
-
-import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -15,7 +12,6 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 
-import com.qa.domain.Customer;
 import com.qa.domain.Transaction;
 import com.qa.service.repository.TransactionRepository;
 import com.qa.util.JSONUtil;
@@ -31,13 +27,6 @@ public class TransactionDBRepository implements TransactionRepository{
 	private JSONUtil util;
 	
 	private static final Logger LOGGER = Logger.getLogger(TransactionDBRepository.class);
-
-	@Override
-	public String getAllTransactions(long ACC_ID) {
-		Query query = manager.createQuery("Select a FROM Transaction a where ACC_ID = " + ACC_ID + ";");
-		Collection<Transaction> transactions = (Collection<Transaction>) query.getResultList();
-		return util.getJSONForObject(transactions);
-	}
 	
 	@Override
 	public String getAllTransactionStatement(long ACC_ID) {
@@ -57,7 +46,7 @@ public class TransactionDBRepository implements TransactionRepository{
 						"\", \"AMOUNT\": \"" + transaction.getAmount() + "\"}, ";
 			}
 		}else {
-			return "{\"message\": \"Transaction was unsuccessful\"}";
+			return "{\"message\": \"Transaction statement was unsuccessful\"}";
 		}
 		
 		LOGGER.info("Iterator transaction JSON: " + stringJson);

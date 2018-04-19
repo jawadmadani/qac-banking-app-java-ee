@@ -73,10 +73,8 @@ public class CustomerDBRepository implements CustomerRepository{
 	@Override
 	@Transactional(REQUIRED)
 	public String createCustomer(String FIRST_NAME, String SECOND_NAME, String USERNAME, String PASSWORD) {
-		//Query query = manager.createQuery("insert into Customer (FIRST_NAME, SECOND_NAME, USERNAME, PASSWORD) values ('" + FIRST_NAME + "', '" + SECOND_NAME + "', '" + USERNAME + "', '" + PASSWORD + "')");
 		LOGGER.info("At customer DB repo - post request - createCustomer");
 		LOGGER.info(FIRST_NAME + "---" + SECOND_NAME + "---" + USERNAME + "---" + PASSWORD);
-		
 		Customer newCustomer = new Customer();
 		newCustomer.setFirstName(FIRST_NAME);
 		newCustomer.setSecondName(SECOND_NAME);

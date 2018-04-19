@@ -52,7 +52,7 @@ public class CustomerEndpoint {
 		LOGGER.info(newCustomer.getUserName() + "----" + newCustomer.getPassword() + "----" + newCustomer.getFirstName() + "----" + newCustomer.getSecondName());
 		return service.addCustomer(newCustomer.getFirstName(), newCustomer.getSecondName(), newCustomer.getUserName(), newCustomer.getPassword());
 	}
-	
+
 	public void setService(CustomerService service) {
 		this.service = service;
 	}
