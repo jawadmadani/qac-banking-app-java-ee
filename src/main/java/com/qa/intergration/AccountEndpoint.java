@@ -10,7 +10,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.apache.log4j.Logger;
-
 import com.qa.domain.Account;
 import com.qa.domain.Customer;
 import com.qa.service.business.AccountService;
@@ -21,16 +20,18 @@ public class AccountEndpoint {
 
 	@Inject
 	private AccountService service; //this links to the class AccountService in the project hierarchy
+  
+	private static final Logger LOGGER = Logger.getLogger(AccountEndpoint.class);
 
 	@Inject
 	private JSONUtil util;
-	
-	private static final Logger LOGGER = Logger.getLogger(CustomerEndpoint.class);
-	
+  
 	@Path("/")
 	@GET
 	@Produces({ "application/json" })
 	public String getAllAccounts(@PathParam("CUS_ID") Long CUS_ID) {
+		LOGGER.info("At AccountEndPoint - GET Request - Get All Accounts");
+		LOGGER.info("Customer id: " + CUS_ID);
 		return service.getAllAccounts(CUS_ID);
 	}
 
