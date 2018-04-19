@@ -18,6 +18,12 @@ public class TransactionServiceImpl implements TransactionService{
 		LOGGER.info("testing..." + repo.getAllTransactions(ACC_ID));
 		return repo.getAllTransactions(ACC_ID);
 	}
+	
+	@Override
+	public String getAllTransactionStatement(long ACC_ID) {
+		LOGGER.info("testing at getAllTransactionStatement" + repo.getAllTransactionStatement(ACC_ID));
+		return repo.getAllTransactionStatement(ACC_ID);
+	}
 
 //	@Override
 //	public String addTransaction(String transaction) {
@@ -38,10 +44,6 @@ public class TransactionServiceImpl implements TransactionService{
 //		this.repo = repo;
 //	}
 
-	@Override
-	public String getAllTransactionStatement(long ACC_ID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
