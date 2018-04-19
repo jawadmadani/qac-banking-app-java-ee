@@ -108,10 +108,10 @@ angular.module('app')
                 console.log($scope.responseData.result);
                 if ($scope.responseData.result !== 'run'){
                     console.log('failed to create');
-                    $state.go('login');
                 }
                 else if ($scope.responseData.result === 'run') {
-                    console.log('created customer')
+                    console.log('created customer');
+                    $state.go('login');
                 }
             });
         };
@@ -132,7 +132,7 @@ angular.module('app')
         }());
 
       	$scope.addAccount = function(){
-          	$location.path(location.url() + '/new');
+          	$location.path($location.url() + '/new');
       	};
 
         $scope.removeAccount = function(account){

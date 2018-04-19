@@ -1,12 +1,12 @@
-<h2>Accounts</h2>
+<h2>Accounts</h2><br>
+<br>
 <input type="button" ng-click="addAccount()" value="Add Account">
-
+<br>
+<br>
+<h3>All Accounts</h3>
 <table>
 	<tr>
-		<td><h3>All Accounts</h3></td>
-	</tr>
-	<tr>
-		<td><h4>Account Number</h4></td>
+		<th>Account Number</th>
 	</tr>
 	<tr ng-repeat="account in accountList">
 		<td>{{account.accountNumber}}</td>
