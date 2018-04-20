@@ -1,0 +1,25 @@
+<h3>Full Account Statement</h3>
+
+<!--<div class="date selection containers">-->
+    <!--<input type="date" ng-model="dateStart">-->
+    <!--<input type="date" ng-model="dateEnd">-->
+<!--</div>-->
+
+<div class="Statement Container">
+    <table id="statementTable">
+        <thead>
+            <tr>
+                <th ng-click="field='DATEOFTRANSACTION',order=!order">Date of transaction</th>
+                <th ng-click="field='TYPE',order=!order">Transaction Type</th>
+                <th ng-click="field='AMOUNT',order=!order">Ammount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="trans in transactions | orderBy:field:order">
+                <td>{{trans.DATEOFTRANSACTION}}</td>
+                <td>{{trans.TYPE}}</td>
+                <td>{{trans.AMOUNT}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
