@@ -18,4 +18,10 @@ public class TransactionServiceImpl implements TransactionService{
 		LOGGER.info("Transaction ServiceImpl - Get request - getAllTransactionStatement");
 		return repo.getAllTransactionStatement(ACC_ID);
 	}
+
+	@Override
+	public String getBalance(long ACC_ID) {
+		LOGGER.info("Transaction ServiceImpl - Get request - getBAlance");
+		return repo.getBalance(ACC_ID);
+	}
 }
