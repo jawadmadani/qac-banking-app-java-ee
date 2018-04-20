@@ -194,21 +194,30 @@ angular.module('app')
         }
     })
     .controller('transactionController',function($scope,$http,$location,$state,logout){
-       $scope.getTransactions = function(){
-           //placeholder - GET
-       };
+       	$scope.field = "";
+       	$scope.order = false;
+        $scope.transactions = [];
 
-       $scope.transactions = getTransactions();
+        (function(){
+           	$http.get(urlPrefix + $location.url()).then(function(response){
+           		$scope.transactions = response.data;
+           		console.log($scope.transactions);
+           	})
+        }());
 
-       $scope.signOut = function(){
-           logout();
-       };
+        $scope.signOut = function(){
+            logout();
+        };
 
-       $scope.mapTransactions = function(){
-           //placeholder ----- this is the map API. Good luck
-       };
+        $scope.viewStatement = function(){
+            let path = $location.url();
+            let split = path.split("/");
+            $location.path('/customer/' + split[2] + '/account/' + split[4] + '/statement');
+        };
 
-       $scope.balancePlotTransactions = function(){
-           //placeholder ----- this where google charts magic is done
-       };
+        $scope.viewAll = function(){
+            let path = $location.url();
+            let split = path.split("/");
+            $location.path('/customer/' + split[2] + '/accounts');
+        };
     });

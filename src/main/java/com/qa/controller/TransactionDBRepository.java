@@ -51,7 +51,7 @@ public class TransactionDBRepository implements TransactionRepository{
 		
 		LOGGER.info("Iterator transaction JSON: " + stringJson);
 		
-		stringJson = stringJson.substring(0, (stringJson.length() - 2));
+		stringJson = stringJson.substring(0, (stringJson.length() - 1));
 		
 		LOGGER.info(stringJson);
 		

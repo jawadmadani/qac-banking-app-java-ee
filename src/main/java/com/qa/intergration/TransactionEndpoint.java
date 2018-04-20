@@ -32,6 +32,7 @@ public class TransactionEndpoint {
 	@Produces({ "transaction/json" })
 	public String getTransaction(@PathParam("ACC_ID") Long ACC_ID) {
 		LOGGER.info("At Transaction End Point - Get request - getTransaction");
+		LOGGER.info("Account id: " + ACC_ID);
 		return service.getAllTransactionStatement(ACC_ID);
 	}
 	
