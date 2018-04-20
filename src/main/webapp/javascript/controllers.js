@@ -117,7 +117,7 @@ angular.module('app')
         };
     })
     .controller('accountsController',function($scope,$http,$location,$state,logout){
-        $scope.accountList=[];
+        $scope.accountList='';
   
         $scope.logSubmit = function(){
             console.log('Running account creation protocol');
