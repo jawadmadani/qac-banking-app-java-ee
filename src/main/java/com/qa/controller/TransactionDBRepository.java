@@ -39,11 +39,11 @@ public class TransactionDBRepository implements TransactionRepository{
 		String stringJson = "";
 		if(transactions.size() != 0) {
 			for(Transaction transaction : transactions) {
-				stringJson = stringJson + "{\"TRANS_ID\": \"" + transaction.getTransactionID() + 
-						"\", \"ACC_ID\": \"" + transaction.getAccount().getId() + 
-						"\", \"TYPE\": \"" + transaction.getType() + 
-						"\", \"DATEOFTRANSACTION\": \"" + transaction.getDateOfTransaction() + 
-						"\", \"AMOUNT\": \"" + transaction.getAmount() + "\"}, ";
+				stringJson = stringJson + "{\"TRANS_ID\":\"" + transaction.getTransactionID() +
+						"\",\"ACC_ID\":\"" + transaction.getAccount().getId() +
+						"\",\"TYPE\":\"" + transaction.getType() +
+						"\",\"DATEOFTRANSACTION\":\"" + transaction.getDateOfTransaction() +
+						"\",\"AMOUNT\":\"" + transaction.getAmount() + "\"},";
 			}
 		}else {
 			return "{\"message\": \"Transaction statement was unsuccessful\"}";
