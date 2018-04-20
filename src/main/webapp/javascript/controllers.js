@@ -194,8 +194,8 @@ angular.module('app')
         }
     })
     .controller('transactionController',function($scope,$http,$location,$state,logout){
-       	$scope.field = "";
-       	$scope.order = false;
+       	$scope.field = "DATEOFTRANSACTION";
+       	$scope.order = true;
         $scope.transactions = [];
 
         (function(){
@@ -220,4 +220,10 @@ angular.module('app')
             let split = path.split("/");
             $location.path('/customer/' + split[2] + '/accounts');
         };
+
+        $scope.viewAccount = function(){
+            let path = $location.url();
+            let split = path.split("/");
+            $location.path('/customer/' + split[2] + '/account/' + split[4]);
+        }
     });
