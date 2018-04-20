@@ -44,6 +44,14 @@ public class TransactionEndpoint {
 		return service.getAllTransactionStatement(ACC_ID);
 	}
 	
+	@Path("/balance")
+	@GET
+	@Produces( { "transaction/json" })
+	public String getBalance(@PathParam("ACC_ID") Long ACC_ID) {
+		LOGGER.info("At Transaction End Point - Get request - getBalance");
+		return service.getBalance(ACC_ID);
+	}
+	
 	public void setService(TransactionService service) {
 		this.service = service;
 	}

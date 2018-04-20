@@ -19,4 +19,10 @@ public class TransactionServiceImpl implements TransactionService{
 		LOGGER.info("Account id: " + ACC_ID);
 		return repo.getAllTransactionStatement(ACC_ID);
 	}
+
+	@Override
+	public String getBalance(long ACC_ID) {
+		LOGGER.info("Transaction ServiceImpl - Get request - getBAlance");
+		return repo.getBalance(ACC_ID);
+	}
 }
